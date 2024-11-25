@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+# Resolve the symlink to find the actual location of the script
+SCRIPT_PATH=$(readlink -f "$0")
+REPO_ROOT=$(dirname "$(dirname "$SCRIPT_PATH")")
+
+# Directory containing command scripts
+COMMANDS_DIR="$REPO_ROOT/scripts/commands"
+
+# Check if a command is specified
+if [ -z "$1" ]; then
+    echo "Error: No command specified."
+    echo "Use 'latex-env help' to see available commands."
+    exit 1
+fi
+
+# Command dispatcher
+COMMAND="$1"
+shift
+
+if [ -f "$COMMANDS_DIR/$COMMAND.sh" ]; then
+    bash "$COMMANDS_DIR/$COMMAND.sh" "$@"
+else
+    echo "Error: Unknown command '$COMMAND'."
+    echo "Use 'latex-env help' to see available commands."
+    exit 1
+fi

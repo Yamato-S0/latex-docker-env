@@ -1,0 +1,9 @@
+services:
+  latex:
+    build: .
+    image: latex-docker:latest
+    container_name: latex-docker
+    volumes:
+      - ~/latex_workspace:/workspace
+    working_dir: /workspace
+    command: tail -f /dev/null
