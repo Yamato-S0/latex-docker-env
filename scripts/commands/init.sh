@@ -18,7 +18,47 @@ cat > "$SETTINGS_FILE" <<EOL
   "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.outDir": "./out",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "latex-workshop.latex.tools": [
+    {
+      "name": "platex",
+      "command": "latexmk",
+      "args": [
+        "-e",
+        "$latex='platex %O -synctex=1 %S';",
+        "-e",
+        "$bibtex='pbibtex %O %B';",
+        "-e",
+        "$dvipdf='dvipdfmx %O -f ipaex.map -o %D %S';",
+        "-f",
+        "-pdfdvi",
+        "-outdir=./out",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "uplatex",
+      "command": "latexmk",
+      "args": [
+        "-e",
+        "'=\"uplatex %O -synctex=1 %S\"'",
+        "-pdfdvi",
+        "-outdir=./out",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pLaTeX + dvipdfmx",
+      "tools": ["platex"]
+    },
+    {
+      "name": "upLaTeX + dvipdfmx",
+      "tools": ["uplatex"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "pLaTeX + dvipdfmx"
 }
 EOL
 echo "Generated VSCode settings in $SETTINGS_FILE."
