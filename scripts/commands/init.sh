@@ -32,6 +32,8 @@ cat > "$SETTINGS_FILE" <<EOL
         "\$dvipdf='dvipdfmx %O -f ipaex.map -o %D %S';",
         "-f",
         "-pdfdvi",
+        "-interaction=nonstopmode",
+        "-halt-on-error",  
         "-outdir=./out",
         "%DOC%"
       ]
