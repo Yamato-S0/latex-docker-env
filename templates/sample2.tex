@@ -1,0 +1,94 @@
+\documentclass[a4paper,11pt]{jsarticle}
+\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry} % 余白を設定
+% \usepackage{fontspec} % フォント設定
+% \setmainfont{YuMincho Medium} % 本文フォントを游明朝に設定
+% \setsansfont{YuGothic Medium} % ゴシックフォントを游ゴシックに設定
+\usepackage{titlesec} % タイトル設定
+\usepackage{graphicx} % 図表用
+\usepackage{caption} % キャプション調整
+\usepackage{amsmath,amssymb} % 数式用
+\usepackage{hyperref} % ハイパーリンク用
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+% 段落間の余白とインデント設定
+\setlength{\parindent}{2em} % 段落のインデント
+\setlength{\parskip}{0pt} % 段落間の余白
+
+% 見出しデザイン設定
+\titleformat{\section}{\Large\bfseries\sffamily}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\sffamily}{\thesubsection}{1em}{}
+
+% 行数・文字数の設定
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23.4cm}
+\renewcommand{\baselinestretch}{1.2} % 行間設定
+
+% ページ番号
+\pagestyle{plain}
+
+% 文書開始
+\begin{document}
+
+% 表紙
+% \begin{titlepage}
+%     \centering
+%     \vspace*{\fill}
+%     {\Huge\bfseries 文書タイトル} \\[2cm]
+%     {\large 著者名} \\[0.5cm]
+%     \vspace*{\fill}
+%     {\large YYYY年MM月DD日} % 提出日
+% \end{titlepage}
+
+% 目次
+\pagenumbering{gobble} % ページ番号を非表示
+\tableofcontents
+\newpage
+\pagenumbering{arabic} % ページ番号を表示
+
+% 本文開始
+\section{はじめに}
+ここに本文を書きます。
+
+\section{関連研究}
+関連研究の内容を記述します。
+
+\section{実験}
+実験内容を記述します。
+
+\section{結果}
+結果を記述します。
+
+\section{考察}
+考察を記述します。
+
+\section{まとめ}
+まとめを記述します。
+
+% 参考文献
+\newpage
+
+\bibliographystyle{junsrt}
+\bibliography{cite}
+
+% あとがき
+\newpage
+\section*{あとがき}
+ここにあとがきを記述します。
+
+% 謝辞
+\newpage
+\section*{謝辞}
+ここに謝辞を記述します。
+
+% 付録
+\newpage
+\section*{付録}
+ここに付録を記述します。
+
+\end{document}
