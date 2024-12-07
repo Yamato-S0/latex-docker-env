@@ -1,4 +1,4 @@
-\documentclass[a4paper,11pt]{jsarticle}
+\documentclass[a4paper,10.5pt]{jsarticle}
 \usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry} % 余白を設定
 \usepackage{titlesec} % タイトル設定
 \usepackage{graphicx} % 図表用
@@ -12,7 +12,23 @@
     urlcolor=blue,
     citecolor=black
 }
-
+% ページの文字数・行数を指定するための関数
+\makeatletter
+\def\mojiparline#1{
+    \newcounter{mpl}
+    \setcounter{mpl}{#1}
+    \@tempdima=\linewidth
+    \advance\@tempdima by-\value{mpl}zw
+    \addtocounter{mpl}{-1}
+    \divide\@tempdima by \value{mpl}
+    \advance\kanjiskip by\@tempdima
+    \advance\parindent by\@tempdima
+}
+\makeatother
+\def\linesparpage#1{
+    \baselineskip=\textheight
+    \divide\baselineskip by #1
+}
 % 段落間の余白とインデント設定
 \setlength{\parindent}{2em} % 段落のインデント
 \setlength{\parskip}{0pt} % 段落間の余白
@@ -22,9 +38,6 @@
 \titleformat{\subsection}{\large\bfseries\sffamily}{\thesubsection}{1em}{}
 
 % 行数・文字数の設定
-\setlength{\textwidth}{16cm}
-\setlength{\textheight}{23.4cm}
-\renewcommand{\baselinestretch}{1.2} % 行間設定
 
 % ページ番号
 \pagestyle{plain}
@@ -32,21 +45,25 @@
 % 文書開始
 \begin{document}
 
-% 表紙
-% \begin{titlepage}
-%     \centering
-%     \vspace*{\fill}
-%     {\Huge\bfseries 文書タイトル} \\[2cm]
-%     {\large 著者名} \\[0.5cm]
-%     \vspace*{\fill}
-%     {\large YYYY年MM月DD日} % 提出日
-% \end{titlepage}
+表紙
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    {\Huge\bfseries 文書タイトル} \\[2cm]
+    {\large 著者名} \\[0.5cm]
+    \vspace*{\fill}
+    {\large YYYY年MM月DD日} % 提出日
+\end{titlepage}
 
 % 目次
 \pagenumbering{gobble} % ページ番号を非表示
 \tableofcontents
 \newpage
 \pagenumbering{arabic} % ページ番号を表示
+% 一行あたり文字数の指定
+\mojiparline{40}
+% 1ページあたり行数の指定
+\linesparpage{30}
 
 % 本文開始
 \section{はじめに}
